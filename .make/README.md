@@ -36,7 +36,7 @@ project users:
 
 The different targets and their description can be examined by executing the command:
 
-![](../img/make_targets.png)
+![](img/make_targets.png)
 
 If there is a problem with the contents of these targets, please open an
 issue [here](https://github.com/f-PLT/python-project-template/issues).
