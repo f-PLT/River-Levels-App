@@ -310,16 +310,16 @@ uninstall-precommit: ## Uninstall the pre-commit hook
 
 .PHONY: install-dev
 install-dev: uv-install-auto ## Install the application along with developer dependencies
-	@$(ENV_INSTALL_TOOL) --group dev
+	@$(ENV_INSTALL_TOOL) --group dev --all-packages
 	@make -s _remind-env-activate
 
 .PHONY: install-with-lab
 install-with-lab: uv-install-auto ## Install the application and it's dev dependencies, including Jupyter Lab
-	@$(ENV_INSTALL_TOOL) --group dev --group lab
+	@$(ENV_INSTALL_TOOL) --group dev --group lab --all-packages
 	@make -s _remind-env-activate
 
 
 .PHONY: install-package
 install-package: uv-install-auto ## Install the application package only
-	@$(ENV_INSTALL_TOOL) --no-dev
+	@$(ENV_INSTALL_TOOL) --no-dev --all-packages
 	@make -s _remind-env-activate

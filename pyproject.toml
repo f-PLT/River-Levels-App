@@ -42,11 +42,6 @@ lab = [
 ]
 
 #
-# Scripts
-#
-[project.scripts]
-
-#
 # Tools
 #
 

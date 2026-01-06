@@ -1,10 +1,17 @@
 [project]
-name = "api"
+name = "river-api"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "river-databases",
+    "river-worker",
+]
+
+[tool.uv.sources]
+river-worker = { workspace = true }
+river-databases = { workspace = true }
 
 [project.scripts]
 
