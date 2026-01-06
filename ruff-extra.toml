@@ -1,0 +1,48 @@
+
+[tool.ruff.lint]
+select = [
+    "A",   # Flake8 Built ins
+    "E",   # Error (Flake8)
+    "F",   # Pyflakes (Flake8)
+    "W",   # Warning (Flake8)
+    "I",   # isort (import sorting)
+    "N",   # Naming conventions (Pylint, etc.)
+    "C90", # mccabe complexity (replaces flake8 --max-complexity and mccabe)
+    "B",   # Bugbear (common linting issues)
+    "UP",  # pyupgrade (suggests modern Python syntax)
+    "PLR", # Pylint refactor
+    "PLE", # Pylint error (specific Pylint error rules)
+    "PLW", # Pylint warning (specific Pylint warning rules)
+    "PLC", # Pylint convention (specific Pylint convention rules)
+    "R",   # Refactor (Pylint refactoring suggestions)
+    "TID", # TO DO comments
+    "FAST",# FastAPI
+    "C4",  # List and dict comprehensions
+    "DJ",  # Django
+    "PIE", # Returns and unnecessary returns
+    "Q",   # Double quotes
+    "RET", # Fix return statements
+    "PTH", # Enforce pathlib
+    "ARG", # Unused argument
+    "NPY", # Numpy specific
+    "PD",  # Pandas specific
+    "RUF", # Ruff specific
+]
+
+ignore = [
+  "E203", # whitespace before ':' (Black/Ruff-format compatible ignore)
+  "E266", # too many leading '#'
+  "E501", # line too long (you explicitly ignore; common with formatters)
+  "D100", 
+  "D101", 
+  "D102", 
+  "D103", 
+  "D104", 
+  "D105", 
+  "D106", 
+  "D107",
+  "RET504",
+  "RUF013",
+  "PTH123",
+  "RUF010"
+]

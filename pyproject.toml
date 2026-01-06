@@ -1,0 +1,159 @@
+[project]
+name = "river-levels-app"
+version = "2026.01.0"
+description = ""
+authors = [{ name = "Francis Pelletier", email = "fplt.softwaredeveloper@gmail.com" }]
+requires-python = ">=3.13"
+readme = "README.md"
+dependencies = []
+
+[tool.uv.workspace]
+members = ["apps/api", "apps/worker", "packages/*"]
+
+[dependency-groups]
+dev = [
+    "bump-my-version>=1.2.6",
+    "docformatter[tomli]>=1.7.7",
+    "flynt>=1.0.6",
+    "mdformat>=1.0.0",
+    "mdformat-gfm>=1.0.0",
+    "mdformat-gfm-alerts>=2.0.0",
+    "mdformat-mkdocs>=5.1.1",
+    "nox>=2025.11.12",
+    "pre-commit>=4.5.1",
+    "pytest>=9.0.2",
+    "ruff>=0.14.10",
+]
+
+docs = [
+    "mkdocs>=1.6.1",
+    "mkdocs-autorefs>=1.4.3",
+    "mkdocs-awesome-pages-plugin>=2.10.1",
+    "mkdocs-literate-nav>=0.6.2",
+    "mkdocs-material>=9.7.1",
+    "mkdocs-section-index>=0.3.10",
+    "pymdown-extensions>=10.20",
+]
+
+lab = [
+    "jupyterlab>=4.5.1",
+    "jupyterlab-lsp>=5.2.0",
+    "notebook>=7.5.1",
+]
+
+#
+# Scripts
+#
+[project.scripts]
+
+#
+# Tools
+#
+
+[tool.bumpversion]
+current_version = "2026.01.0"
+commit = true
+message = "Version {new_version} released."
+tag = true
+tag_name = "river-levels-app-{new_version}"
+parse = """(?x)
+(?P<release>
+  [1-9][0-9]{3}\\.(?:1[0-2]|0[1-9])
+)
+\\.(?P<patch>\\d+)
+"""
+
+serialize = ["{release}.{patch}"]
+
+[tool.bumpversion.parts.release]
+calver_format = "{YYYY}.{0M}"
+
+[[tool.bumpversion.files]]
+filename = "CHANGES.md"
+search = '''
+## [Unreleased](https://github.com/f-PLT/River-Levels-App/tree/main) (latest)
+
+______________________________________________________________________
+'''
+replace = '''
+## [Unreleased](https://github.com/f-PLT/River-Levels-App/tree/main) (latest)
+
+______________________________________________________________________
+
+<!-- (New changes here in list form) -->
+
+## [{new_version}](https://github.com/f-PLT/River-Levels-App/tree/{new_version}) ({utcnow:%Y-%m-%d})
+
+______________________________________________________________________
+'''
+
+[[tool.bumpversion.files]]
+filename = "pyproject.toml"
+search = 'version = "{current_version}"'
+replace = 'version = "{new_version}"'
+
+[[tool.bumpversion.files]]
+filename = "Makefile.variables"
+search = "APP_VERSION := {current_version}"
+replace = "APP_VERSION := {new_version}"
+
+[tool.flynt]
+line-length = 120
+transform-concats = true
+verbose = true
+
+[tool.docformatter]
+style = "google"
+pre-summary-newline = true
+wrap-descriptions = 120
+wrap-summaries = 120
+blank = false
+exclude = []
+recursive = true
+
+[tool.ruff]
+target-version = "py313"
+line-length = 120
+
+# Your excludes (Ruff already excludes .git and __pycache__ by default, but keeping explicit is fine)
+extend-exclude = [
+  "migrations",
+  "__pycache__",
+]
+
+[tool.ruff.format]
+preview = true
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I", "D", "C90", "PLR0913", "PLR0914", "PLR0917"]
+
+ignore = [
+  "E203", # whitespace before ':' (Black/Ruff-format compatible ignore)
+  "E266", # too many leading '#'
+  "E501", # line too long (you explicitly ignore; common with formatters)
+  "E203",
+  "D100",
+  "D101", 
+  "D102", 
+  "D103", 
+  "D104", 
+  "D105", 
+  "D106", 
+  "D107",
+]
+
+preview = true
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.mccabe]
+max-complexity = 20 
+
+[tool.ruff.lint.pylint]
+max-locals = 20
+max-args = 16 
+max-positional-args = 16
