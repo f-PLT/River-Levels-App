@@ -1,0 +1,50 @@
+exclude: /migrations/|Makefile*
+default_stages: [pre-commit]
+
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v5.0.0
+  hooks:
+  - id: check-json
+  - id: check-toml
+  - id: check-xml
+  - id: check-yaml
+  - id: debug-statements
+  - id: check-builtin-literals
+  - id: check-case-conflict
+  - id: check-docstring-first
+  - id: detect-private-key
+  - id: check-added-large-files
+    args: [--maxkb=5000]
+
+- repo: https://github.com/ikamensh/flynt
+  rev: 1.0.1
+  hooks:
+  - id: flynt
+
+- repo: https://github.com/astral-sh/ruff-pre-commit
+  rev: v0.14.10
+  hooks:
+    - id: ruff-check
+    - id: ruff-format
+
+- repo: https://github.com/hukkin/mdformat
+  rev: 0.7.22
+  hooks:
+  - id: mdformat
+    additional_dependencies:
+    - mdformat-gfm
+    - mdformat-gfm-alerts
+    - mdformat-mkdocs
+
+- repo: https://github.com/tcort/markdown-link-check
+  rev: v3.14.2
+  hooks:
+    - id: markdown-link-check
+      args: ["-q", "--config", ".markdown-link-check.json"]
+
+# sets up .pre-commit-ci.yaml to ensure pre-commit dependencies stay up to date
+ci:
+  autoupdate_schedule: weekly
+  skip: []
+  submodules: false
