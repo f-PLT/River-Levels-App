@@ -7,9 +7,9 @@
 APP_VERSION := 2026.01.0
 
 # APPLICATION_NAME must be aligned with the name of the folder containing your package
-APPLICATION_NAME := src
+APPLICATION_NAME := River-Levels-App
 
-PYTHON_VERSION := 3
+PYTHON_VERSION := 3.13
 
 # This is the default install environment for the project.
 # Here, we are talking about the virtual environment management - not dependencies.
